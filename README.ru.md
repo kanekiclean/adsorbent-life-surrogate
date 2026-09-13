@@ -189,6 +189,7 @@ y_старт = k · C / ρ(T) · 10⁶
 .
 ├── README.md
 ├── README.ru.md
+├── LICENSE
 ├── requirements.txt
 ├── src/
 │   ├── hysys_reader.py        чтение условий из Aspen HYSYS через COM
