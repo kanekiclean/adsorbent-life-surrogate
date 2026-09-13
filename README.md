@@ -137,25 +137,29 @@ The spec boundary runs diagonally: at 25 °C a residual of up to 15 % is accepta
 
 Hold-out set, 30 % of the data:
 
-| Target | Model | MAPE | Max error | Coefficients |
-| --- | --- | --- | --- | --- |
-| Breakthrough time | physics-based parametric | **0.90 %** | 5.91 % | 3 |
-| | log-linear | 2.60 % | 11.35 % | 4 |
-| | gradient boosting | 3.40 % | 15.18 % | 800 trees |
-| Outlet at cycle start | physics-based parametric | **0.13 %** | 0.40 % | 2 |
-| | log-linear | 0.30 % | 1.24 % | 4 |
-| | gradient boosting | 5.03 % | 33.50 % | 600 trees |
+| Target | Model | MAPE | Max error | R² | Coefficients |
+| --- | --- | --- | --- | --- | --- |
+| Breakthrough time, 166 points | physics-based parametric | **1.06 %** | 6.24 % | 0.99986 | 3 |
+| | log-linear | 6.21 % | 22.20 % | 0.97726 | 4 |
+| | gradient boosting | 2.10 % | 6.32 % | 0.99679 | 800 trees |
+| Outlet at cycle start, 50 points | physics-based parametric | **0.13 %** | 0.34 % | 0.999998 | 2 |
+| | log-linear | 0.39 % | 1.11 % | 0.99995 | 4 |
+| | gradient boosting | 3.32 % | 15.52 % | 0.99225 | 600 trees |
 
-The physics-based form is 3.8 to 38 times more accurate with an order of magnitude fewer coefficients. The bed response is described by an inverted Langmuir isotherm, a smooth function whose shape is known from physics. Approximating it with piecewise-constant trees on a sample of this size loses by construction.
+For the outlet at cycle start the physics-based form is 25 times more accurate on MAPE while using two coefficients against 600 trees. For breakthrough time the margin is narrower: twice as accurate on MAPE, with maximum errors that are effectively equal, 6.24 % against 6.32 %.
 
-**Methodological conclusion: applying machine learning to this problem yields no benefit.** The simplest adequate form was chosen on the strength of the comparison, not assumed in advance.
+The bed response is an inverted Langmuir isotherm, a smooth function whose shape is known from physics. Piecewise-constant trees approximate it at a visible cost on a sample of this size, and the log-linear form is the weakest of the three on breakthrough time.
+
+**Methodological conclusion: gradient boosting buys nothing here that the physical form does not already provide, while carrying two to three orders of magnitude more parameters.** The simplest adequate form was chosen on the strength of the comparison, not assumed in advance.
+
+Every number in this section is reproduced by `src/surrogate.py`; the random seeds are fixed in the code.
 
 ### Recovery of physical constants
 
 | Quantity | Set in the model | Recovered by the surrogate | Reference range |
 | --- | --- | --- | --- |
-| Heat of adsorption of methanol, kJ/mol | 50.0 | 51.0 and 55.4 | 45–60 |
-| Exponent on residual capacity | 1.0 | 1.0025 | 1.0 |
+| Heat of adsorption of methanol, kJ/mol | 50.0 | 55.4 from breakthrough time, 51.1 from cycle-start outlet | 45–60 |
+| Exponent on residual capacity | 1.0 | 1.0050 | 1.0 |
 
 Coefficients were obtained by fitting the sample; reference values took no part in the fit.
 
@@ -195,6 +199,8 @@ Kinetics check: changing the mass transfer coefficient by a factor of 25 shifts 
 ├── data/
 │   ├── runs.csv               150 runs, three parameters
 │   └── runs4.csv              68 runs, four parameters
+└── figures/
+    └── breakthrough.png       breakthrough curves at different bed temperatures
 ```
 
 ---
