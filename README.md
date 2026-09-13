@@ -6,6 +6,8 @@ Diagnosing the mechanism of adsorbent performance loss from the shape of the bre
 
 Aspen HYSYS and Aspen Adsorption linked through COM, automated sample generation, and a comparison of a physics-based parametric model against gradient boosting.
 
+**[analysis.ipynb](analysis.ipynb)** renders the whole walkthrough on GitHub — data, figures and the model comparison — with nothing to install.
+
 ---
 
 ## Problem
@@ -201,12 +203,14 @@ Kinetics check: changing the mass transfer coefficient by a factor of 25 shifts 
 ├── README.ru.md
 ├── LICENSE
 ├── requirements.txt
+├── analysis.ipynb             executed walkthrough, renders on GitHub
 ├── src/
 │   ├── hysys_reader.py        reads process conditions from Aspen HYSYS over COM
 │   ├── acm_runner.py          automated sweeps, three-parameter grid
 │   ├── acm_runner4.py         automated sweeps including residual loading
 │   ├── surrogate.py           training and validation of the surrogate model
 │   ├── make_figures.py        plots built from the supplied data, no Aspen needed
+│   ├── build_notebook.py      regenerates analysis.ipynb
 │   └── curve.py               breakthrough curve plotting
 ├── data/
 │   ├── runs.csv               150 runs, three parameters
