@@ -195,8 +195,6 @@ Kinetics check: changing the mass transfer coefficient by a factor of 25 shifts 
 ├── data/
 │   ├── runs.csv               150 runs, three parameters
 │   └── runs4.csv              68 runs, four parameters
-└── figures/
-    └── breakthrough.png       breakthrough curves at different bed temperatures
 ```
 
 ---
