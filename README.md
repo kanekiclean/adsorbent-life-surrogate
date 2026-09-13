@@ -189,6 +189,7 @@ Kinetics check: changing the mass transfer coefficient by a factor of 25 shifts 
 .
 ├── README.md
 ├── README.ru.md
+├── LICENSE
 ├── requirements.txt
 ├── src/
 │   ├── hysys_reader.py        reads process conditions from Aspen HYSYS over COM
@@ -196,9 +197,9 @@ Kinetics check: changing the mass transfer coefficient by a factor of 25 shifts 
 │   ├── acm_runner4.py         automated sweeps including residual loading
 │   ├── surrogate.py           training and validation of the surrogate model
 │   └── curve.py               breakthrough curve plotting
-├── data/
-│   ├── runs.csv               150 runs, three parameters
-│   └── runs4.csv              68 runs, four parameters
+└── data/
+    ├── runs.csv               150 runs, three parameters
+    └── runs4.csv              68 runs, four parameters
 ```
 
 ---
