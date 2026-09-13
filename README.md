@@ -133,6 +133,16 @@ Methanol at the outlet at the start of the cycle, ppm (limit 10), at full adsorb
 
 The spec boundary runs diagonally: at 25 °C a residual of up to 15 % is acceptable, while at 55 °C even 3 % already pushes the unit off-spec.
 
+### Figures
+
+![Breakthrough time vs bed temperature](figures/time_vs_temperature.png)
+
+![Operating map](figures/operating_map.png)
+
+![Breakthrough time vs feed concentration](figures/time_vs_concentration.png)
+
+All three are reproduced by `src/make_figures.py` directly from the supplied data; Aspen is not required.
+
 ### Comparison of surrogate model forms
 
 Hold-out set, 30 % of the data:
@@ -196,10 +206,15 @@ Kinetics check: changing the mass transfer coefficient by a factor of 25 shifts 
 │   ├── acm_runner.py          automated sweeps, three-parameter grid
 │   ├── acm_runner4.py         automated sweeps including residual loading
 │   ├── surrogate.py           training and validation of the surrogate model
+│   ├── make_figures.py        plots built from the supplied data, no Aspen needed
 │   └── curve.py               breakthrough curve plotting
-└── data/
-    ├── runs.csv               150 runs, three parameters
-    └── runs4.csv              68 runs, four parameters
+├── data/
+│   ├── runs.csv               150 runs, three parameters
+│   └── runs4.csv              68 runs, four parameters
+└── figures/
+    ├── time_vs_temperature.png
+    ├── operating_map.png
+    └── time_vs_concentration.png
 ```
 
 ---
