@@ -112,7 +112,7 @@ def load(path, cols):
 
 def fit_time_model():
     """Суррогат времени проскока: три параметра (T, cap, y)."""
-    d = load("runs.csv", ["T_K", "capacity_frac", "y_methanol_ppm",
+    d = load("../data/runs.csv", ["T_K", "capacity_frac", "y_methanol_ppm",
                           "t_breakthrough_h"])
     Tk, cap, y, t = d[:, 0], d[:, 1], d[:, 2], d[:, 3]
     ok = t > 0.5                      # отбрасываем точки, изначально вне нормы
@@ -143,7 +143,7 @@ def fit_time_model():
 
 def fit_start_model():
     """Суррогат выхода в начале цикла: четвёртый параметр — остаточная загрузка."""
-    d = load("runs4.csv", ["T_K", "capacity_frac", "w_residual", "y_start_ppm"])
+    d = load("../data/runs4.csv", ["T_K", "capacity_frac", "w_residual", "y_start_ppm"])
     Tk, cap, W, ys = d[:, 0], d[:, 1], d[:, 2], d[:, 3]
     ok = W > 0
     Tk, cap, W, ys = Tk[ok], cap[ok], W[ok], ys[ok]
